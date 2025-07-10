@@ -1,10 +1,13 @@
+// Lab 3: Import React and useState hook for managing state
 import React, { useState } from 'react';
-import './App.css';
+import './App.css'; // Lab 1: Import CSS for styling
 
 function App() {
+  // Lab 3: State to manage current tab and shopping cart contents
   const [tab, setTab] = useState('home');
   const [cart, setCart] = useState([]);
 
+  // Lab 2: Simulated menu data (could later be fetched via API)
   const menuItems = [
     { id: 1, name: 'Classic Burger', price: 8 },
     { id: 2, name: 'Fries', price: 3 },
@@ -13,16 +16,20 @@ function App() {
     { id: 5, name: 'Iced Tea', price: 2 },
   ];
 
+  // Lab 3: Function to add an item to the cart
   const addToCart = (item) => {
     setCart([...cart, item]);
   };
 
+  // Lab 3: Function to clear the cart
   const clearCart = () => {
     setCart([]);
   };
 
+  // Lab 3: Calculate total cart price
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
+  // Lab 2: Render different tabs in a single-page application (SPA)
   const renderPage = () => {
     switch (tab) {
       case 'home':
@@ -46,17 +53,19 @@ function App() {
 
   return (
     <div className="App">
+      {/* Lab 1: Navigation styling, Lab 2: Tab switching */}
       <nav className="navbar">
         <button onClick={() => setTab('home')}>Home</button>
         <button onClick={() => setTab('menu')}>Menu</button>
         <button onClick={() => setTab('contact')}>Contact</button>
       </nav>
+      {/* Lab 2: Display selected tab content */}
       <div className="content">{renderPage()}</div>
     </div>
   );
 }
 
-// Subcomponents
+// Lab 1: Home tab - static component
 const HomePage = () => (
   <div>
     <h2>🍔 Welcome to SmartOrder</h2>
@@ -64,6 +73,7 @@ const HomePage = () => (
   </div>
 );
 
+// Lab 2 + 3: Menu tab - dynamic item listing and cart management
 const MenuPage = ({ menuItems, cart, addToCart, clearCart, total }) => (
   <div>
     <h2>📋 Menu</h2>
@@ -93,6 +103,7 @@ const MenuPage = ({ menuItems, cart, addToCart, clearCart, total }) => (
   </div>
 );
 
+// Lab 1: Contact tab - static component
 const ContactPage = () => (
   <div>
     <h2>📞 Contact Us</h2>
